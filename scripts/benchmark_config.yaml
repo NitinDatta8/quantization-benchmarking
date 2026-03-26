@@ -1,0 +1,61 @@
+model:
+  base_id: "mistralai/Mistral-7B-Instruct-v0.3"
+  base_local_path: "/workspace/models/base"
+  context_length: 8192
+  max_new_tokens: 512
+  temperature: 0.0
+  dtype: "float16"
+  enforce_eager: false
+
+methods:
+  baseline_fp16:
+    quantized_output_path: null
+    vllm_quantization: null
+    target_gpu: "A100_SXM"
+
+  bitsandbytes_nf4:
+    quantized_output_path: null
+    vllm_quantization: "bitsandbytes"
+    bnb_load_in_4bit: true
+    bnb_4bit_quant_type: "nf4"
+    bnb_4bit_compute_dtype: "float16"
+    target_gpu: "RTX_A5000"
+
+  awq_int4:
+    quantized_output_path: "/workspace/models/awq_int4"
+    vllm_quantization: "awq"
+    target_gpu: "A100_SXM"
+    calibration_samples: 128
+    calibration_seqlen: 512
+
+  gptq_int4_marlin:
+    quantized_output_path: "/workspace/models/gptq_int4_marlin"
+    vllm_quantization: "marlin"
+    target_gpu: "A100_SXM"
+    bits: 4
+    group_size: 128
+    calibration_samples: 128
+    calibration_seqlen: 2048
+
+  fp8_w8a8:
+    quantized_output_path: "/workspace/models/fp8_w8a8"
+    vllm_quantization: "fp8"
+    target_gpu: "L4"
+
+benchmark:
+  warmup_requests: 5
+  concurrency_levels: [1, 4, 8, 16]
+  request_timeout_sec: 120
+
+prompt_categories:
+  - travel_dining
+  - credit_card
+  - merchant_offers
+  - multi_turn
+  - structured_json
+
+output:
+  results_dir: "results/"
+  charts_dir: "results/charts/"
+  prompts_file: "prompts/benchmark_prompts.json"
+  report_file: "results/benchmark_report.md"

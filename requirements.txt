@@ -1,0 +1,28 @@
+# Core inference engine — installed separately in runpod_setup.sh
+# DO NOT add torch, vllm, or llmcompressor here
+
+# Model loading & quantization
+# transformers ≤4.46 works with huggingface-hub 0.25.x;
+# 4.47+ requires ≥0.26 whose validate_repo_id rejects local paths in vLLM 0.6.6
+transformers>=4.45.0,<4.47.0
+accelerate>=1.0.0,<2.0.0
+bitsandbytes>=0.44.0,<0.46.0
+# autoawq — installed separately in runpod_setup.sh (needs torch at build time)
+optimum>=1.20.0,<2.0.0
+
+# Numpy — vLLM 0.6.6 requires <2.0
+numpy<2.0.0
+
+# huggingface-hub 0.25.x is the last series whose try_to_load_from_cache
+# accepts local filesystem paths without raising HFValidationError
+huggingface-hub>=0.25.0,<0.26.0
+
+# Data & visualization
+pandas>=2.1.0,<3.0.0
+matplotlib>=3.8.0,<4.0.0
+seaborn>=0.13.0,<1.0.0
+
+# Utilities
+pyyaml>=6.0,<7.0
+jsonschema>=4.20.0,<5.0.0
+tqdm>=4.65.0,<5.0.0
