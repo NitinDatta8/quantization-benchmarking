@@ -43,7 +43,7 @@ uv pip install vllm==0.6.6.post1 -r "$REPO_DIR/requirements.txt" \
     -c "$CONSTRAINTS" --extra-index-url https://download.pytorch.org/whl/cu121 --quiet
 
 # autoawq needs torch at build time but doesn't declare it
-pip install "autoawq>=0.2.5,<0.3.0" --no-build-isolation --quiet
+pip install "autoawq==0.2.7" --no-build-isolation --quiet
 
 # Pin compressed-tensors (vLLM hard dep)
 uv pip install "compressed-tensors==0.8.1" --no-deps --quiet
@@ -55,12 +55,14 @@ case "$GPU_TYPE" in
     uv pip install "compressed-tensors==0.8.1" --no-deps --quiet
     ;;
   A100_SXM)
-    uv pip install auto-gptq==0.7.1 "llmcompressor>=0.4.0,<0.5.0" \
-        --extra-index-url https://huggingface.github.io/autogptq-index/whl/cu121/ \
-        --no-deps --quiet
+    # GPTQ deps: auto-gptq from source + peft/gekko
+    pip install "auto-gptq @ git+https://github.com/AutoGPTQ/AutoGPTQ.git" --no-build-isolation --quiet
+    uv pip install peft==0.13.2 gekko==1.1.1 sentencepiece==0.2.0 safetensors==0.4.5 --quiet
+    uv pip install "llmcompressor>=0.4.0,<0.5.0" --no-deps --quiet
     ;;
   L4)
     uv pip install "llmcompressor>=0.4.0,<0.5.0" --no-deps --quiet
+    uv pip install loguru --quiet
     ;;
 esac
 

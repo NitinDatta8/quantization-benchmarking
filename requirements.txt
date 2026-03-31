@@ -7,7 +7,7 @@
 transformers>=4.45.0,<4.47.0
 accelerate>=1.0.0,<2.0.0
 bitsandbytes>=0.44.0,<0.46.0
-# autoawq — installed separately in runpod_setup.sh (needs torch at build time)
+# autoawq==0.2.7 — installed separately in runpod_setup.sh (needs torch at build time)
 optimum>=1.20.0,<2.0.0
 
 # Numpy — vLLM 0.6.6 requires <2.0

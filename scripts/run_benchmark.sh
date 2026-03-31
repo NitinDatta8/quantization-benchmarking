@@ -23,10 +23,19 @@ case "$GPU_TYPE" in
   RTX_A5000) ENTRIES=("bitsandbytes_nf4:none:none") ;;
   A100_SXM)  ENTRIES=(
                "baseline_fp16:none:$BASE_MODEL"
-               "awq_int4:quantize/awq.py:/workspace/models/awq_int4"
+               "bitsandbytes_nf4:none:none"
+               "awq_int4:quantize/awq_quantize.py:/workspace/models/awq_int4"
                "gptq_int4_marlin:quantize/gptq.py:/workspace/models/gptq_int4_marlin"
+               "awq_int4_marlin:none:/workspace/models/awq_int4"
+               "gptq_int4:none:/workspace/models/gptq_int4_marlin"
              ) ;;
-  L4)        ENTRIES=("fp8_w8a8:quantize/fp8.py:/workspace/models/fp8_w8a8") ;;
+  L4)        ENTRIES=(
+               "baseline_fp16:none:$BASE_MODEL"
+               "bitsandbytes_nf4:none:none"
+               "awq_int4:none:/workspace/models/awq_int4"
+               "gptq_int4_marlin:none:/workspace/models/gptq_int4_marlin"
+               "fp8_w8a8:quantize/fp8.py:/workspace/models/fp8_w8a8"
+             ) ;;
   *)         echo "Unknown GPU_TYPE: $GPU_TYPE"; exit 1 ;;
 esac
 

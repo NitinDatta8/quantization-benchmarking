@@ -23,14 +23,32 @@ methods:
 
   awq_int4:
     quantized_output_path: "/workspace/models/awq_int4"
+    hf_repo: "Nitin878/Mistral-7B-Instruct-v0.3-AWQ"
     vllm_quantization: "awq"
     target_gpu: "A100_SXM"
     calibration_samples: 128
-    calibration_seqlen: 512
 
   gptq_int4_marlin:
     quantized_output_path: "/workspace/models/gptq_int4_marlin"
+    hf_repo: "Nitin878/Mistral-7B-Instruct-v0.3-GPTQ"
     vllm_quantization: "marlin"
+    target_gpu: "A100_SXM"
+    bits: 4
+    group_size: 128
+    calibration_samples: 128
+    calibration_seqlen: 2048
+
+  awq_int4_marlin:
+    quantized_output_path: "/workspace/models/awq_int4"
+    hf_repo: "Nitin878/Mistral-7B-Instruct-v0.3-AWQ"
+    vllm_quantization: "awq_marlin"
+    target_gpu: "A100_SXM"
+    calibration_samples: 128
+
+  gptq_int4:
+    quantized_output_path: "/workspace/models/gptq_int4_marlin"
+    hf_repo: "Nitin878/Mistral-7B-Instruct-v0.3-GPTQ"
+    vllm_quantization: "gptq"
     target_gpu: "A100_SXM"
     bits: 4
     group_size: 128
@@ -39,7 +57,8 @@ methods:
 
   fp8_w8a8:
     quantized_output_path: "/workspace/models/fp8_w8a8"
-    vllm_quantization: "fp8"
+    hf_repo: "Nitin878/Mistral-7B-Instruct-v0.3-FP8"
+    vllm_quantization: null  # auto-detected from compressed-tensors config saved by llmcompressor
     target_gpu: "L4"
 
 benchmark:

@@ -19,7 +19,7 @@ def load_model(method_name, config):
         "dtype": model_cfg.get("dtype", "float16"),
     }
 
-    # vLLM dispatches quantization from the flag + checkpoint metadata:
+    # vLLM does quantization from the flag + checkpoint metadata:
     #   FP8 - quantization="fp8", native on Ada/Hopper GPUs
     #   AWQ - quantization="awq", uses fused AWQ kernels
     #   GPTQ -quantization="marlin", uses Marlin INT4 kernels (Ampere+)

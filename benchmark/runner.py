@@ -212,6 +212,10 @@ def main():
         print(f"Unknown method '{args.method}'. Valid: {', '.join(config['methods'])}")
         sys.exit(1)
 
+    expected_gpu = config["methods"][args.method].get("target_gpu")
+    if expected_gpu and args.gpu != expected_gpu:
+        print(f"WARNING: method '{args.method}' was originally configured for '{expected_gpu}', running on '{args.gpu}' instead.")
+
     run_benchmark(args.method, args.gpu, config)
 
 
