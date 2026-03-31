@@ -1,0 +1,5 @@
+method,gpu,concurrency,num_requests,ttft_mean_sec,ttft_p50_sec,ttft_p95_sec,tps_mean,tps_total,peak_gpu_memory_gb,model_memory_gb,kv_cache_memory_gb,quality_pass_rate,cost_per_1m_tokens_usd
+gptq_int4_marlin,L4,1,65,0.1145,0.0762,0.5059,56.53,56.68,19.81,19.46,0.35,0.5077,1.9114
+gptq_int4_marlin,L4,4,65,0.4662,0.3229,1.8686,44.71,171.27,20.45,19.46,0.99,0.5231,0.6325
+gptq_int4_marlin,L4,8,65,0.9286,0.6386,2.346,38.62,279.76,20.86,19.46,1.4,0.5231,0.3872
+gptq_int4_marlin,L4,16,65,1.6639,1.202,4.0076,32.31,432.22,20.86,19.46,1.4,0.5385,0.2506

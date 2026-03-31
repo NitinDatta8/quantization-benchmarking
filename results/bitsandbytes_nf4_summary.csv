@@ -1,0 +1,5 @@
+method,gpu,concurrency,num_requests,ttft_mean_sec,ttft_p50_sec,ttft_p95_sec,tps_mean,tps_total,peak_gpu_memory_gb,model_memory_gb,kv_cache_memory_gb,quality_pass_rate,cost_per_1m_tokens_usd
+bitsandbytes_nf4,RTX_A5000,1,65,0.1534,0.1332,0.4303,64.17,64.43,21.5,21.07,0.43,0.4308,1.1641
+bitsandbytes_nf4,RTX_A5000,4,65,0.3873,0.2578,1.3545,12.93,48.75,22.52,21.07,1.46,0.4769,1.5386
+bitsandbytes_nf4,RTX_A5000,8,65,0.6997,0.4607,1.6699,11.87,87.62,23.35,21.07,2.28,0.4615,0.856
+bitsandbytes_nf4,RTX_A5000,16,65,1.2494,0.8635,2.8583,10.94,157.17,23.35,21.07,2.28,0.4615,0.4772

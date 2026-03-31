@@ -1,0 +1,5 @@
+method,gpu,concurrency,num_requests,ttft_mean_sec,ttft_p50_sec,ttft_p95_sec,tps_mean,tps_total,peak_gpu_memory_gb,model_memory_gb,kv_cache_memory_gb,quality_pass_rate,cost_per_1m_tokens_usd
+baseline_fp16,L4,1,65,0.1406,0.1175,0.473,17.42,17.44,19.82,19.46,0.36,0.5385,6.2103
+baseline_fp16,L4,4,65,0.4406,0.2923,1.7115,14.8,56.79,20.46,19.46,1.01,0.5538,1.9077
+baseline_fp16,L4,8,65,0.8591,0.5484,2.1083,13.51,98.47,20.88,19.46,1.42,0.5692,1.1002
+baseline_fp16,L4,16,65,1.498,1.0724,3.6563,12.44,164.43,20.88,19.46,1.42,0.5385,0.6588

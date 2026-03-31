@@ -1,0 +1,5 @@
+method,gpu,concurrency,num_requests,ttft_mean_sec,ttft_p50_sec,ttft_p95_sec,tps_mean,tps_total,peak_gpu_memory_gb,model_memory_gb,kv_cache_memory_gb,quality_pass_rate,cost_per_1m_tokens_usd
+gptq_int4,A100_SXM,1,65,0.0473,0.0411,0.1311,193.48,193.98,71.97,71.41,0.56,0.5385,2.1336
+gptq_int4,A100_SXM,4,65,0.1167,0.0826,0.4063,125.92,487.02,72.54,71.41,1.14,0.5231,0.8498
+gptq_int4,A100_SXM,8,65,0.2143,0.1495,0.5152,87.15,652.93,72.96,71.41,1.55,0.5077,0.6339
+gptq_int4,A100_SXM,16,65,0.3684,0.2666,0.8818,54.44,786.46,72.96,71.41,1.55,0.4923,0.5263

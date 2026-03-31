@@ -1,0 +1,5 @@
+method,gpu,concurrency,num_requests,ttft_mean_sec,ttft_p50_sec,ttft_p95_sec,tps_mean,tps_total,peak_gpu_memory_gb,model_memory_gb,kv_cache_memory_gb,quality_pass_rate,cost_per_1m_tokens_usd
+fp8_w8a8,L4,1,65,0.1189,0.0823,0.4971,28.03,28.09,19.11,17.59,1.51,0.6154,3.8566
+fp8_w8a8,L4,4,65,0.458,0.3008,1.8469,23.56,90.45,21.25,17.59,3.66,0.5538,1.1978
+fp8_w8a8,L4,8,65,0.9103,0.5697,2.3413,21.32,155.5,21.17,17.59,3.58,0.5692,0.6967
+fp8_w8a8,L4,16,65,1.5959,1.1447,3.9244,18.64,248.88,21.17,17.59,3.58,0.5692,0.4353

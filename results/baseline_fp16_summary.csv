@@ -1,0 +1,5 @@
+method,gpu,concurrency,num_requests,ttft_mean_sec,ttft_p50_sec,ttft_p95_sec,tps_mean,tps_total,peak_gpu_memory_gb,model_memory_gb,kv_cache_memory_gb,quality_pass_rate,cost_per_1m_tokens_usd
+baseline_fp16,A100_SXM,1,65,0.0362,0.0305,0.1224,87.24,87.37,71.51,71.15,0.36,0.5385,4.7374
+baseline_fp16,A100_SXM,4,65,0.1084,0.0774,0.407,77.54,297.04,72.16,71.15,1.01,0.5538,1.3934
+baseline_fp16,A100_SXM,8,65,0.208,0.1374,0.5174,70.16,509.96,72.57,71.15,1.42,0.5538,0.8116
+baseline_fp16,A100_SXM,16,65,0.3657,0.2623,0.881,62.89,832.8,72.57,71.15,1.42,0.5538,0.497

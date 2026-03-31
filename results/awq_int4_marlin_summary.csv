@@ -1,0 +1,5 @@
+method,gpu,concurrency,num_requests,ttft_mean_sec,ttft_p50_sec,ttft_p95_sec,tps_mean,tps_total,peak_gpu_memory_gb,model_memory_gb,kv_cache_memory_gb,quality_pass_rate,cost_per_1m_tokens_usd
+awq_int4_marlin,A100_SXM,1,65,0.0406,0.0297,0.1495,166.56,167.05,71.5,71.16,0.35,0.5231,2.4776
+awq_int4_marlin,A100_SXM,4,65,0.1353,0.0904,0.5328,139.39,537.13,72.15,71.16,0.99,0.5385,0.7706
+awq_int4_marlin,A100_SXM,8,65,0.2669,0.1747,0.6647,123.76,904.58,72.56,71.16,1.41,0.5538,0.4575
+awq_int4_marlin,A100_SXM,16,65,0.4747,0.3407,1.1403,102.77,1390.63,72.56,71.16,1.41,0.5538,0.2976

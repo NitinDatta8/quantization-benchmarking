@@ -14,10 +14,6 @@ build/
 # Jupyter
 .ipynb_checkpoints/
 
-# Results (large CSVs excluded; charts kept)
-results/*.csv
-results/charts/*.png
-
 # Model weights (never commit)
 *.bin
 *.safetensors
