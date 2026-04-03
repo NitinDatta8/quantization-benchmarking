@@ -69,10 +69,10 @@ case "$GPU_TYPE" in
     # GPTQ deps: auto-gptq from source + peft/gekko
     pip install "auto-gptq @ git+https://github.com/AutoGPTQ/AutoGPTQ.git" --no-build-isolation --quiet
     uv pip install peft==0.13.2 gekko==1.1.1 sentencepiece==0.2.0 safetensors==0.4.5 --quiet
-    uv pip install "llmcompressor>=0.4.0,<0.5.0" --no-deps --quiet
+    uv pip install "llmcompressor>=0.5.0" --no-deps --quiet
     ;;
   L4)
-    uv pip install "llmcompressor>=0.4.0,<0.5.0" --no-deps --quiet
+    uv pip install "llmcompressor>=0.5.0" --no-deps --quiet
     uv pip install loguru --quiet
     ;;
   RTX_5090)

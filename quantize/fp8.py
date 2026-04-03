@@ -10,11 +10,11 @@ import yaml
 
 def quantize_fp8(base_model_path, output_path, config):
     from llmcompressor.modifiers.quantization import QuantizationModifier
-    from llmcompressor.transformers import SparseAutoModelForCausalLM, oneshot
-    from transformers import AutoTokenizer
+    from llmcompressor import oneshot
+    from transformers import AutoModelForCausalLM, AutoTokenizer
 
     print(f"[FP8] Loading model from {base_model_path}")
-    model = SparseAutoModelForCausalLM.from_pretrained(
+    model = AutoModelForCausalLM.from_pretrained(
         base_model_path, device_map="auto", torch_dtype="auto",
     )
     tokenizer = AutoTokenizer.from_pretrained(base_model_path, trust_remote_code=True)

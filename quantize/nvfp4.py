@@ -36,15 +36,15 @@ def load_calibration_data(config, tokenizer, num_samples=512, seq_len=2048):
 
 def quantize_nvfp4(base_model_path, output_path, config):
     from llmcompressor.modifiers.quantization import QuantizationModifier
-    from llmcompressor.transformers import SparseAutoModelForCausalLM, oneshot
-    from transformers import AutoTokenizer
+    from llmcompressor import oneshot
+    from transformers import AutoModelForCausalLM, AutoTokenizer
 
     cfg = config["methods"]["nvfp4"]
     n_samples = cfg.get("calibration_samples", 512)
     seq_len = cfg.get("calibration_seqlen", 2048)
 
     print(f"[NVFP4] Loading model from {base_model_path}")
-    model = SparseAutoModelForCausalLM.from_pretrained(
+    model = AutoModelForCausalLM.from_pretrained(
         base_model_path, device_map="auto", torch_dtype="auto",
     )
     tokenizer = AutoTokenizer.from_pretrained(base_model_path, trust_remote_code=True)
