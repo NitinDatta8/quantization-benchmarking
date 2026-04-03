@@ -30,10 +30,7 @@ def load_calibration_data(config, tokenizer, num_samples=512, seq_len=2048):
         texts += texts
     texts = texts[:num_samples]
 
-    return [
-        tokenizer(t, return_tensors="pt", max_length=seq_len, padding="max_length", truncation=True)
-        for t in texts
-    ]
+    return texts
 
 
 def quantize_nvfp4(base_model_path, output_path, config):
@@ -54,13 +51,26 @@ def quantize_nvfp4(base_model_path, output_path, config):
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
-    calib_data = load_calibration_data(config, tokenizer, n_samples, seq_len)
+    # Build calibration dataset from custom prompts and save as local JSONL
+    calib_texts = load_calibration_data(config, tokenizer, n_samples, seq_len)
+    calib_file = Path(output_path).parent / "nvfp4_calib.jsonl"
+    calib_file.parent.mkdir(parents=True, exist_ok=True)
+    with open(calib_file, "w") as f:
+        for text in calib_texts:
+            json.dump({"text": text}, f)
+            f.write("\n")
 
     recipe = QuantizationModifier(targets="Linear", scheme="NVFP4", ignore=["lm_head"])
 
     print(f"[NVFP4] Quantizing ({n_samples} calibration samples, seq_len={seq_len})...")
     t0 = time.time()
-    oneshot(model=model, recipe=recipe, calibration_dataloader=calib_data)
+    oneshot(
+        model=model,
+        recipe=recipe,
+        dataset=str(calib_file),
+        max_seq_length=seq_len,
+        num_calibration_samples=n_samples,
+    )
     print(f"[NVFP4] Done in {time.time() - t0:.1f}s")
 
     Path(output_path).mkdir(parents=True, exist_ok=True)
