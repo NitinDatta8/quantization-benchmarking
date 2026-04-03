@@ -52,13 +52,9 @@ def quantize_nvfp4(base_model_path, output_path, config):
         tokenizer.pad_token = tokenizer.eos_token
 
     # Build calibration dataset from custom prompts and save as local JSONL
+    from datasets import Dataset
     calib_texts = load_calibration_data(config, tokenizer, n_samples, seq_len)
-    calib_file = Path(output_path).parent / "nvfp4_calib.jsonl"
-    calib_file.parent.mkdir(parents=True, exist_ok=True)
-    with open(calib_file, "w") as f:
-        for text in calib_texts:
-            json.dump({"text": text}, f)
-            f.write("\n")
+    ds = Dataset.from_dict({"text": calib_texts})
 
     recipe = QuantizationModifier(targets="Linear", scheme="NVFP4", ignore=["lm_head"])
 
@@ -67,7 +63,7 @@ def quantize_nvfp4(base_model_path, output_path, config):
     oneshot(
         model=model,
         recipe=recipe,
-        dataset=str(calib_file),
+        dataset=ds,
         max_seq_length=seq_len,
         num_calibration_samples=n_samples,
     )
