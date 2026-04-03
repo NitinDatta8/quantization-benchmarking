@@ -39,7 +39,7 @@ def quantize_nvfp4(base_model_path, output_path, config):
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
     cfg = config["methods"]["nvfp4"]
-    n_samples = cfg.get("calibration_samples", 512)
+    n_samples = cfg.get("calibration_samples", 128)
     seq_len = cfg.get("calibration_seqlen", 2048)
 
     base_model_path = os.path.realpath(base_model_path)
