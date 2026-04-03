@@ -119,25 +119,7 @@ python quantize/nvfp4.py --base_model /workspace/models/base --output_path /work
 bash scripts/run_benchmark.sh RTX_5090 false nvfp4
 ```
 
-## 12. Additional RTX 5090 benchmarks (apples to apples comparison)
-
-On the RTX 5090 pod, download pre-quantized models from HF Hub:
-```
-huggingface-cli download Nitin878/Mistral-7B-Instruct-v0.3-AWQ --local-dir /workspace/models/awq_int4
-huggingface-cli download Nitin878/Mistral-7B-Instruct-v0.3-GPTQ --local-dir /workspace/models/gptq_int4_marlin
-huggingface-cli download Nitin878/Mistral-7B-Instruct-v0.3-FP8 --local-dir /workspace/models/fp8_w8a8
-```
-
-Run other methods on RTX 5090 for comparison:
-```
-bash scripts/run_benchmark.sh RTX_5090 false baseline_fp16
-bash scripts/run_benchmark.sh RTX_5090 false bitsandbytes_nf4
-bash scripts/run_benchmark.sh RTX_5090 false awq_int4
-bash scripts/run_benchmark.sh RTX_5090 false gptq_int4_marlin
-bash scripts/run_benchmark.sh RTX_5090 false fp8_w8a8
-```
-
-## 13. Additional L4 benchmarks (apples-to-apples comparison)
+## 12. Additional L4 benchmarks (apples-to-apples comparison)
 
 On the L4 pod, download pre-quantized models from HF Hub:
 ```
@@ -153,14 +135,14 @@ bash scripts/run_benchmark.sh L4 false awq_int4
 bash scripts/run_benchmark.sh L4 false gptq_int4_marlin
 ```
 
-## 14. Additional A100 benchmark (BnB NF4)
+## 13. Additional A100 benchmark (BnB NF4)
 
 On the A100 pod:
 ```
 bash scripts/run_benchmark.sh A100_SXM false bitsandbytes_nf4
 ```
 
-## 15. Kernel isolation experiments (AWQ+Marlin, GPTQ without Marlin)
+## 14. Kernel isolation experiments (AWQ+Marlin, GPTQ without Marlin)
 
 On the A100 pod (models already downloaded, no re-quantization needed):
 ```
@@ -168,7 +150,7 @@ bash scripts/run_benchmark.sh A100_SXM true awq_int4_marlin
 bash scripts/run_benchmark.sh A100_SXM true gptq_int4
 ```
 
-## 16. Analyze results
+## 15. Analyze results
 
 ```
 python scripts/analyze.py

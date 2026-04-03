@@ -38,10 +38,6 @@ case "$GPU_TYPE" in
              ) ;;
   RTX_5090)  ENTRIES=(
                "baseline_fp16:none:$BASE_MODEL"
-               "bitsandbytes_nf4:none:none"
-               "awq_int4:none:/workspace/models/awq_int4"
-               "gptq_int4_marlin:none:/workspace/models/gptq_int4_marlin"
-               "fp8_w8a8:none:/workspace/models/fp8_w8a8"
                "nvfp4:quantize/nvfp4.py:/workspace/models/nvfp4"
              ) ;;
   *)         echo "Unknown GPU_TYPE: $GPU_TYPE"; exit 1 ;;
