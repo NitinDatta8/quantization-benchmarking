@@ -6,6 +6,8 @@ import random
 import time
 from pathlib import Path
 
+import os
+
 import yaml
 
 
@@ -43,6 +45,7 @@ def quantize_nvfp4(base_model_path, output_path, config):
     n_samples = cfg.get("calibration_samples", 512)
     seq_len = cfg.get("calibration_seqlen", 2048)
 
+    base_model_path = os.path.realpath(base_model_path)
     print(f"[NVFP4] Loading model from {base_model_path}")
     model = AutoModelForCausalLM.from_pretrained(
         base_model_path, device_map="auto", torch_dtype="auto",

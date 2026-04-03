@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import os
 import time
 from pathlib import Path
 
@@ -13,6 +14,7 @@ def quantize_fp8(base_model_path, output_path, config):
     from llmcompressor import oneshot
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
+    base_model_path = os.path.realpath(base_model_path)
     print(f"[FP8] Loading model from {base_model_path}")
     model = AutoModelForCausalLM.from_pretrained(
         base_model_path, device_map="auto", torch_dtype="auto",
