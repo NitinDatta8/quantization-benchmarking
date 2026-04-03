@@ -12,7 +12,7 @@ HF_TOKEN="${2:-}"
 BASE_MODEL_ID="mistralai/Mistral-7B-Instruct-v0.3"
 BASE_MODEL_LOCAL="/workspace/models/base"
 VENV_DIR="/workspace/venv"
-REPO_DIR="/workspace/jpmc-benchmark"
+REPO_DIR="/workspace/quantization-benchmarking"
 
 echo "=== RunPod Setup (GPU: $GPU_TYPE) ==="
 

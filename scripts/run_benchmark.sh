@@ -11,7 +11,7 @@ set -euo pipefail
 GPU_TYPE="${1:-A100_SXM}"
 SKIP_QUANT="${2:-false}"
 METHOD_FILTER="${3:-}"
-REPO_DIR="/workspace/jpmc-benchmark"
+REPO_DIR="/workspace/quantization-benchmarking"
 BASE_MODEL="/workspace/models/base"
 CONFIG="scripts/benchmark_config.yaml"
 
@@ -35,6 +35,14 @@ case "$GPU_TYPE" in
                "awq_int4:none:/workspace/models/awq_int4"
                "gptq_int4_marlin:none:/workspace/models/gptq_int4_marlin"
                "fp8_w8a8:quantize/fp8.py:/workspace/models/fp8_w8a8"
+             ) ;;
+  RTX_5090)  ENTRIES=(
+               "baseline_fp16:none:$BASE_MODEL"
+               "bitsandbytes_nf4:none:none"
+               "awq_int4:none:/workspace/models/awq_int4"
+               "gptq_int4_marlin:none:/workspace/models/gptq_int4_marlin"
+               "fp8_w8a8:none:/workspace/models/fp8_w8a8"
+               "nvfp4:quantize/nvfp4.py:/workspace/models/nvfp4"
              ) ;;
   *)         echo "Unknown GPU_TYPE: $GPU_TYPE"; exit 1 ;;
 esac

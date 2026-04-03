@@ -61,6 +61,14 @@ methods:
     vllm_quantization: null  # auto-detected from compressed-tensors config saved by llmcompressor
     target_gpu: "L4"
 
+  nvfp4:
+    quantized_output_path: "/workspace/models/nvfp4"
+    hf_repo: "Nitin878/Mistral-7B-Instruct-v0.3-NVFP4"
+    vllm_quantization: null  # auto-detected from compressed-tensors config saved by llmcompressor
+    target_gpu: "RTX_5090"
+    calibration_samples: 512
+    calibration_seqlen: 2048
+
 benchmark:
   warmup_requests: 5
   concurrency_levels: [1, 4, 8, 16]
